@@ -55,4 +55,4 @@ for k,v in found.items():
 	if openNew == y:	
 		handle.open_new_tab(v)
 	else:
-		print v
+		print(v)
