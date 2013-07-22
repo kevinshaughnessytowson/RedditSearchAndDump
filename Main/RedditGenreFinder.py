@@ -34,11 +34,12 @@ while pages != 0:
 	info = json.loads(info.decode("UTF-8"))
 
 	for i in info['data']['children']:
-		print(i['data']['title'].lower())
-		if genre in i['data']['title'].lower():
-			content = i['data']['media']['oembed']['url']
-			found[i['data']['title']] = content
 		try:
+			print(i['data']['title'].lower())
+			if genre in i['data']['title'].lower():
+				content = i['data']['media']['oembed']['url']
+				found[i['data']['title']] = content
+		
 			if genre in i['data']['link_flair_text'].lower():
 				content = i['data']['media']['oembed']['url']
 				found[i['data']['title']] = content
@@ -52,7 +53,7 @@ while pages != 0:
 #allow the user to choose between opening all found links or just printing them
 openNew = input("Would you like to open all the found links in new tabs? (y/n)").lower()
 for k,v in found.items():
-	if openNew == y:	
+	if openNew == 'y':	
 		handle.open_new_tab(v)
 	else:
 		print(v)
