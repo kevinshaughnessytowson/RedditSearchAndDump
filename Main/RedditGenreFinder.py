@@ -7,15 +7,16 @@ import json
 import webbrowser
 from time import sleep
 
-handle = webbrowser.get()
+handle = webbrowser.get('firefox')
 try:	#self explanatory
 	#subreddit = input("Please enter the subreddit you would like to look through: ")
 
 	genre = input("Please enter what you are looking for: ").lower()
 
-	pages = int(input("How many pages back do you want to look through?"))
+	pages = int(input("How many pages back do you want to look through? "))
 except:
 	print("Invalid input. Did you accidentally type a non-number for the page count?")
+	exit()
 
 hdr = {'User-Agent' : 'genre parser by reddit_coder'}
 
@@ -52,8 +53,14 @@ while pages != 0:
 
 #allow the user to choose between opening all found links or just printing them
 openNew = input("Would you like to open all the found links in new tabs? (y/n)").lower()
+
+count = 0
 for k,v in found.items():
-	if openNew == 'y':	
-		handle.open_new_tab(v)
+	if openNew == 'y':
+		if count == 0:	
+			handle.open_new(v)
+		else:
+			handle.open_new_tab(v)
+		count+=1
 	else:
 		print(v)
