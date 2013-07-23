@@ -7,7 +7,11 @@ import json
 import webbrowser
 from time import sleep
 
-handle = webbrowser.get('firefox')
+browser = input('What browser are you using? (firefox, safari, konqueror, opera, internet explorer, netscape) ').lower()
+if browser == 'internet explorer':
+	browser = 'windows-default'
+
+handle = webbrowser.get(browser)
 try:	#self explanatory
 	#subreddit = input("Please enter the subreddit you would like to look through: ")
 
